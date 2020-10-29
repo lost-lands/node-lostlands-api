@@ -38,7 +38,7 @@ class v1 {
         
         //API functions
         this.player = function(player, callback) {
-            this.request(url + '/player/' + player, function(err, response) {
+            this.request('/player/' + player, function(err, response) {
                 if (err) {
                     callback(err);
                 } else {
@@ -47,7 +47,7 @@ class v1 {
             })
         }
         this.pvp = function(player, callback) {
-            this.request(url + '/pvp/' + player, function(err, response) {
+            this.request('/pvp/' + player, function(err, response) {
                 if (err) {
                     callback(err);
                 } else {
@@ -56,7 +56,7 @@ class v1 {
             })
         }
         this.kills = function(server, callback) {
-            this.request(url + '/kills/' + server, function(err, response) {
+            this.request('/kills/' + server, function(err, response) {
                 if (err) {
                     callback(err);
                 } else {
@@ -65,7 +65,7 @@ class v1 {
             })
         }
         this.performance = function(server, callback) {
-            this.request(url + '/server/' + server, function(err, response) {
+            this.request('/server/' + server, function(err, response) {
                 if (err) {
                     callback(err);
                 } else {
@@ -74,7 +74,7 @@ class v1 {
             })
         }
         this.online = function(server, callback) {
-            this.request(url + '/online/' + server, function(err, response) {
+            this.request('/online/' + server, function(err, response) {
                 if (err) {
                     callback(err);
                 } else {
