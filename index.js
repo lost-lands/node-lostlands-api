@@ -1,6 +1,6 @@
 const https = require('https');
 const http = require('http');
-var v1_requests = require('./v1.json');
+
 class v1 {
     constructor(api_url) {
         if (api_url) {
@@ -16,13 +16,9 @@ class v1 {
         this.request = function(route, callback, p = protocol, u = url) {
             p.get(u + route, (response) => {
                 let data = '';
-
-                // called when a data chunk is received.
                 response.on('data', (chunk) => {
                     data += chunk;
                 });
-
-                // called when the complete response is received.
                 response.on('end', () => {
 
                     data = JSON.parse(data);
@@ -35,25 +31,57 @@ class v1 {
 
 
                 });
-
             }).on("error", (error) => {
                 callback(error)
             });
         }
-        this.get = function(query, data, callback) {
-            for (let type in v1_requests) {
-                if (type === query) {
-                    var route = v1_requests[type];
-                    this.request(url + route, function(err, response) {
-                        if (err) {
-                            callback(err);
-                        } else {
-                            callback(null, response);
-                        }
-                    })
+        
+        //API functions
+        this.player = function(player, callback) {
+            this.request(url + '/player/' + player, function(err, response) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, response);
                 }
-            }
+            })
+        }
+        this.pvp = function(player, callback) {
+            this.request(url + '/pvp/' + player, function(err, response) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, response);
+                }
+            })
+        }
+        this.kills = function(server, callback) {
+            this.request(url + '/kills/' + server, function(err, response) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, response);
+                }
+            })
+        }
+        this.performance = function(server, callback) {
+            this.request(url + '/server/' + server, function(err, response) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, response);
+                }
+            })
+        }
+        this.online = function(server, callback) {
+            this.request(url + '/online/' + server, function(err, response) {
+                if (err) {
+                    callback(err);
+                } else {
+                    callback(null, response);
+                }
+            })
         }
     }
 }
-module.exports = v1
+module.exports = { v1 }
