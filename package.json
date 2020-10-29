@@ -1,6 +1,6 @@
 {
   "name": "node-lostlands-api",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "NodeJS package for accessing the Lost Lands API",
   "main": "index.js",
   "scripts": {
