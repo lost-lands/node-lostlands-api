@@ -82,6 +82,16 @@ class v1 {
                 }
             })
         }
+        this.linked = function(id, callback) {
+                this.request('/discord/linked/' + id, function(err, response) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, response);
+                    }
+                })
+            }
+        
     }
 }
 module.exports = { v1 }
